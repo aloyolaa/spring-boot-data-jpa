@@ -1,26 +1,27 @@
 package com.aloyolaa.springbootdatajpa.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
 
     @NotBlank
     @Column(name = "first_name", nullable = false)
@@ -36,8 +37,20 @@ public class Customer {
     private String email;
 
     @NotNull
-    @Column(name = "create_date")
+    @PastOrPresent
+    @Column(name = "birth_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createDate;
+    private LocalDate birthDate;
+
+    @Column(name = "create_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss.zzz")
+    private LocalDateTime createDate = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Invoice> invoices = new ArrayList<>();
+
+    public void addInvoice(Invoice invoice) {
+        this.invoices.add(invoice);
+    }
 
 }

@@ -15,7 +15,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     @Transactional(readOnly = true)

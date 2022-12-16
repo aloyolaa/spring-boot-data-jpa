@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @SessionAttributes("customer")
 public class CustomerController {
 
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
     @GetMapping("/form")
     public String form(Model model) {
@@ -41,6 +41,14 @@ public class CustomerController {
         model.addAttribute("customers", customers);
         model.addAttribute("page", pageRender);
         return "customers";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable Long id, Model model) {
+        Customer customer = customerService.findById(id).orElseThrow(() -> new CustomerNotFoundException("User with ID " + id + " does not exist in the system"));
+        model.addAttribute("customer", customer);
+        model.addAttribute("title", "Customer Detail");
+        return "detail";
     }
 
     @GetMapping("/form/{id}")

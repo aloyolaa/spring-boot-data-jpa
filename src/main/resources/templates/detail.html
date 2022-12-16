@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+            <h4><a th:href="@{'/invoices/form/' + ${customer.id}}" class="btn btn-primary btn-xs">Add Invoice</a></h4>
+            <ul th:class="list-group">
+                <li class="list-group-item active" th:text="${customer.firstName}"></li>
+                <li class="list-group-item" th:text="${customer.lastName}"></li>
+                <li class="list-group-item" th:text="${customer.email}"></li>
+                <li class="list-group-item" th:text="${customer.birthDate}"></li>
+                <li class="list-group-item" th:text="${customer.createDate}"></li>
+            </ul>
+            <div class="alert alert-info my-4" th:if="${#lists.isEmpty(customer.invoices)}"
+                 th:text="'Customer has no invoices'"></div>
+            <table class="table table-bordered table-striped my-4" th:if="${not #lists.isEmpty(customer.invoices)}">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Create Date</th>
+                    <th>Total Amount</th>
+                    <th>Detail</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="invoice: ${customer.invoices}">
+                    <td th:text="${invoice.id}"></td>
+                    <td th:text="${invoice.description}"></td>
+                    <td th:text="${invoice.createDate}"></td>
+                    <td th:text="${invoice.calculateTotalAmount()}"></td>
+                    <td><a class="btn btn-primary btn-xs" th:href="@{'/invoices/detail/' + ${invoice.id}}">Detail</a></td>
+                    <td><a class="btn btn-danger btn-xs" th:href="@{'/invoices/delete/' + ${invoice.id}}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

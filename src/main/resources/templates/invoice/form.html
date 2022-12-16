@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+            <h4><a th:href="@{'/customers/detail/' + ${invoice.customer.id}}" class="btn btn-light btn-xd">&laquo;
+                Volver</a></h4>
+            <form th:action="@{/invoices/form}" th:object="${invoice}" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 col-form-label">Customer</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:value="${invoice.customer.firstName} + ' ' + ${invoice.customer.lastName}"
+                               class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{description}" class="form-control"
+                               th:errorclass="'form-control is-invalid'">
+                        <small class="invalid-feedback" th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-form-label">Observation</label>
+                    <div class="col-sm-6">
+                        <textarea th:field="*{observation}" class="form-control"
+                                  th:errorclass="'form-control alert-danger'"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="add-product" class="col-sm-2 col-form-label">Add Product</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="add-product" id="add-product" class="form-control">
+                    </div>
+                </div>
+                <table th:replace="invoice/item :: items"></table>
+                <table id="chargeItems" class="table table-sm table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <h5>Total: <span id="totalAmount">0</span></h5>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Save" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+<script th:replace="invoice/js/autocomplete-products :: javascript"></script>
+</body>
+</html>
