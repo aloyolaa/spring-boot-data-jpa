@@ -83,7 +83,7 @@ public class InvoiceController {
 
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model) {
-        Invoice invoice = invoiceService.findById(id).orElseThrow();
+        Invoice invoice = invoiceService.fetchByIdWithCustomerWithInvoiceItemWithProduct(id).orElseThrow();
         model.addAttribute("title", "Invoice Detail");
         model.addAttribute("invoice", invoice);
         return "invoice/detail";

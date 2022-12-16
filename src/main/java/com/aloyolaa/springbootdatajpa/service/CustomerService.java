@@ -15,6 +15,8 @@ public interface CustomerService {
 
     Optional<Customer> findById(Long id);
 
+    Optional<Customer> fetchByIdWithInvoice(Long id);
+
     void save(Customer customer);
 
     void delete(Long id);

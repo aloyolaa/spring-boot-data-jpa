@@ -36,6 +36,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Optional<Customer> fetchByIdWithInvoice(Long id) {
+        return customerRepository.fetchByIdWithInvoice(id);
+    }
+
+    @Override
     @Transactional
     public void save(Customer customer) {
         customerRepository.save(customer);

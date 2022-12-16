@@ -16,6 +16,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     @Transactional(readOnly = true)
+    public Optional<Invoice> fetchByIdWithCustomerWithInvoiceItemWithProduct(Long id) {
+        return invoiceRepository.fetchByIdWithCustomerWithInvoiceItemWithProduct(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Optional<Invoice> findById(Long id) {
         return invoiceRepository.findById(id);
     }

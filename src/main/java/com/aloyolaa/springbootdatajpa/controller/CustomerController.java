@@ -45,7 +45,7 @@ public class CustomerController {
 
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model) {
-        Customer customer = customerService.findById(id).orElseThrow(() -> new CustomerNotFoundException("User with ID " + id + " does not exist in the system"));
+        Customer customer = customerService.fetchByIdWithInvoice(id).orElseThrow(() -> new CustomerNotFoundException("User with ID " + id + " does not exist in the system"));
         model.addAttribute("customer", customer);
         model.addAttribute("title", "Customer Detail");
         return "detail";
