@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head"></head>
 <body>
 <header th:replace="layout/layout :: header"></header>
@@ -7,7 +7,8 @@
     <div class="card bg-light">
         <div class="card-header" th:text="${title}"></div>
         <div class="card-body">
-            <h4><a th:href="@{'/invoices/form/' + ${customer.id}}" class="btn btn-primary btn-xs">Add Invoice</a></h4>
+            <h4><a sec:authorize="hasRole('ADMIN')" th:href="@{'/invoices/form/' + ${customer.id}}"
+                   class="btn btn-primary btn-xs">Add Invoice</a></h4>
             <ul th:class="list-group">
                 <li class="list-group-item active" th:text="${customer.firstName}"></li>
                 <li class="list-group-item" th:text="${customer.lastName}"></li>
@@ -24,8 +25,8 @@
                     <th>Description</th>
                     <th>Create Date</th>
                     <th>Total Amount</th>
-                    <th>Detail</th>
-                    <th>Delete</th>
+                    <th sec:authorize="hasRole('ADMIN')">Detail</th>
+                    <th sec:authorize="hasRole('ADMIN')">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,8 +35,12 @@
                     <td th:text="${invoice.description}"></td>
                     <td th:text="${invoice.createDate}"></td>
                     <td th:text="${invoice.calculateTotalAmount()}"></td>
-                    <td><a class="btn btn-primary btn-xs" th:href="@{'/invoices/detail/' + ${invoice.id}}">Detail</a></td>
-                    <td><a class="btn btn-danger btn-xs" th:href="@{'/invoices/delete/' + ${invoice.id}}">Delete</a></td>
+                    <td sec:authorize="hasRole('ADMIN')"><a class="btn btn-primary btn-xs"
+                                                            th:href="@{'/invoices/detail/' + ${invoice.id}}">Detail</a>
+                    </td>
+                    <td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger btn-xs"
+                                                            th:href="@{'/invoices/delete/' + ${invoice.id}}">Delete</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
