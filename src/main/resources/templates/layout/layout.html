@@ -58,7 +58,9 @@
 
 </div>
 <footer th:fragment="footer" class="container">
-
+    <p sec:authorize="isAuthenticated()">
+        Roles: <span sec:authentication="principal.authorities"></span>
+    </p>
 </footer>
 </body>
 </html>

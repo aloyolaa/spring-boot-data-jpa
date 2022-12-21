@@ -52,3 +52,10 @@ insert into invoice_item (quantity, product_id, invoice_id) values (4, 5, 2);
 insert into invoice_item (quantity, product_id, invoice_id) values (1, 6, 2);
 insert into invoice_item (quantity, product_id, invoice_id) values (3, 7, 3);
 insert into invoice_item (quantity, product_id, invoice_id) values (2, 8, 3);
+
+insert into users (username, password, enabled) values ('aloyolaa', '$2a$10$oMoMCpkAH1kYYkz6KauileTtBUqAMZ12BCEbgYu9UUHYBfnPdrZAS', true);
+insert into users (username, password, enabled) values ('admin', '$2a$10$sFEEUVAyBq9fNs1HVgdDFuDW/dYnmtqcG6uKbUgUeVOp0sn6drHJm', true);
+
+insert into authorities (name, user_id) values ('USER', 1);
+insert into authorities (name, user_id) values ('USER', 2);
+insert into authorities (name, user_id) values ('ADMIN', 2);
