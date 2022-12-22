@@ -13,11 +13,11 @@
                 <thead>
                 <tr>
                     <th sec:authorize="hasAuthority('USER')">ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Birth Date</th>
-                    <th>Create Date</th>
+                    <th th:text="#{text.customer.firstName}">First Name</th>
+                    <th th:text="#{text.customer.lastName}">Last Name</th>
+                    <th th:text="#{text.customer.email}">Email</th>
+                    <th th:text="#{text.customer.birthDate}">Birth Date</th>
+                    <th th:text="#{text.customer.createDate}">Create Date</th>
                     <th sec:authorize="hasAuthority('ADMIN')">Add Invoice</th>
                     <th sec:authorize="hasAuthority('ADMIN')">Update</th>
                     <th sec:authorize="hasAuthority('ADMIN')">Delete</th>

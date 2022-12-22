@@ -6,6 +6,7 @@ import com.aloyolaa.springbootdatajpa.exception.CustomerNotFoundException;
 import com.aloyolaa.springbootdatajpa.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Locale;
+
 @AllArgsConstructor
 @Controller
 @RequestMapping("/customers")
@@ -24,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private MessageSource messageSource;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/form")
@@ -35,11 +39,11 @@ public class CustomerController {
     }
 
     @GetMapping({"/find-all", "/"})
-    public String findAll(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+    public String findAll(@RequestParam(name = "page", defaultValue = "0") int page, Model model, Locale locale) {
         Pageable pageable = PageRequest.of(page, 5);
         Page<Customer> customers = customerService.findAll(pageable);
         PageRender<Customer> pageRender = new PageRender<>("/customers/find-all", customers);
-        model.addAttribute("title", "Customer List");
+        model.addAttribute("title", messageSource.getMessage("text.customer.findAll.title", null, locale));
         model.addAttribute("customers", customers);
         model.addAttribute("page", pageRender);
         return "customers";

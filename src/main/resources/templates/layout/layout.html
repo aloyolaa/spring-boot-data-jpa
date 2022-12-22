@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <title th:text="'Cusomter App' + ${title}"></title>
+    <title th:text="'Cusomter App ' + ${title}"></title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/jquery-ui.min.css" rel="stylesheet">
     <script src="/js/jquery-3.6.2.min.js"></script>
@@ -39,11 +39,35 @@
                         </a>
                         <ul class="dropdown-menu">
                             <form th:action="@{/logout}" method="post" id="logoutForm">
-                                <button class="dropdown-item" onclick="document.getElementById('logoutForm').submit();" type="submit">Sign
+                                <button class="dropdown-item" onclick="document.getElementById('logoutForm').submit();"
+                                        type="submit">Sign
                                     out
                                 </button>
                             </form>
                         </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-right mx-4">
+                    <li class="nav-item mx-1"><a class="btn btn-outline-success" th:href="@{/locale(lang=es_ES)}">ES</a>
+                    </li>
+                    <li class="nav-item mx-1"><a class="btn btn-outline-success" th:href="@{/locale(lang=en_US)}">US</a>
+                    </li>
+                    <li class="nav-item mx-1"><a class="btn btn-outline-success" th:href="@{/locale(lang=de_DE)}">DE</a>
+                    </li>
+                    <li class="nav-item dropdown show">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <span th:text="#{text.locale.language}"></span>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item"
+                                   th:href="@{/locale(lang=es_ES)}" th:text="#{text.locale.es}"></a>
+                                <a class="dropdown-item"
+                                   th:href="@{/locale(lang=en_US)}" th:text="#{text.locale.en}"></a>
+                                <a class="dropdown-item"
+                                   th:href="@{/locale(lang=de_DE)}" th:text="#{text.locale.de}"></a>
+                            </ul>
+                        </a>
                     </li>
                 </ul>
             </div>
