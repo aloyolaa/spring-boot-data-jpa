@@ -8,7 +8,9 @@
         <div class="card-header" th:text="${title}"></div>
         <div class="card-body">
             <h4><a th:href="@{'/customers/detail/' + ${invoice.customer.id}}" class="btn btn-light btn-xs">&laquo;
-                Volver</a></h4>
+                Volver</a>
+                <a class="btn btn-danger btn-xs float-right" th:href="@{'/invoices/detail/' + ${invoice.id}(format=pdf)}">PDF</a>
+            </h4>
             <ul th:class="list-group">
                 <li class="list-group-item active" th:text="'Customer Data'"></li>
                 <li class="list-group-item" th:text="${invoice.customer.firstName}"></li>
