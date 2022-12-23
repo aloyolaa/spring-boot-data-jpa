@@ -1,8 +1,8 @@
-insert into customer (first_name, last_name, email, birth_date, create_date) values ('Consuela', 'Thirlwall', 'cthirlwall0@canalblog.com', '2003-09-18', '2022-06-15 22:46:52');
-insert into customer (first_name, last_name, email, birth_date, create_date) values ('Amitie', 'Renvoise', 'arenvoise1@github.com', '2011-06-14', '2022-02-19 13:59:44');
-insert into customer (first_name, last_name, email, birth_date, create_date) values ('Evey', 'Hassan', 'ehassan2@amazonaws.com', '1993-12-23', '2021-12-21 16:25:10');
-insert into customer (first_name, last_name, email, birth_date, create_date) values ('Garik', 'Caustick', 'gcaustick3@seattletimes.com', '1970-04-01', '2022-08-06 00:25:01');
-insert into customer (first_name, last_name, email, birth_date, create_date) values ('Grissel', 'Askaw', 'gaskaw4@qq.com', '2020-09-19', '2021-12-24 09:46:35');
+insert into customer (first_name, last_name, email, birth_date, create_date) values ('Consuela', 'Thirlwall', 'cthirlwall0@canalblog.com', '2003-09-18', '2022-06-15 22:46:52.123456');
+insert into customer (first_name, last_name, email, birth_date, create_date) values ('Amitie', 'Renvoise', 'arenvoise1@github.com', '2011-06-14', '2022-02-19 13:59:44.123456');
+insert into customer (first_name, last_name, email, birth_date, create_date) values ('Evey', 'Hassan', 'ehassan2@amazonaws.com', '1993-12-23', '2021-12-21 16:25:10.123456');
+insert into customer (first_name, last_name, email, birth_date, create_date) values ('Garik', 'Caustick', 'gcaustick3@seattletimes.com', '1970-04-01', '2022-08-06 00:25:01.123456');
+insert into customer (first_name, last_name, email, birth_date, create_date) values ('Grissel', 'Askaw', 'gaskaw4@qq.com', '2020-09-19', '2021-12-24 09:46:35.123456');
 insert into customer (first_name, last_name, email, birth_date, create_date) values ('Mei', 'Coldbreath', 'mcoldbreath5@wikispaces.com', '1987-07-04', '2022-09-09 10:41:43');
 insert into customer (first_name, last_name, email, birth_date, create_date) values ('Honoria', 'Grubey', 'hgrubey6@ning.com', '2007-04-30', '2022-09-02 16:26:30');
 insert into customer (first_name, last_name, email, birth_date, create_date) values ('Duffie', 'Hedin', 'dhedin7@boston.com', '1966-11-18', '2022-07-14 00:26:47');

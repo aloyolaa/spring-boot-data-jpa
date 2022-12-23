@@ -1,5 +1,7 @@
 package com.aloyolaa.springbootdatajpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
@@ -40,12 +42,15 @@ public class Customer implements Serializable {
     @PastOrPresent
     @Column(name = "birth_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
     @Column(name = "create_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss.zzz")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime createDate = LocalDateTime.now();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Invoice> invoices = new ArrayList<>();
 

@@ -1,5 +1,6 @@
 package com.aloyolaa.springbootdatajpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class Invoice implements Serializable {
     @Column(name = "create_date")
     private LocalDateTime createDate = LocalDateTime.now();
 
+    @JsonBackReference
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
