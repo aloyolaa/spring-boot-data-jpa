@@ -7,8 +7,12 @@
     <div class="card bg-light">
         <div class="card-header" th:text="${title}"></div>
         <div class="card-body">
-            <p><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/customers/form}" class="btn btn-success btn-xs">Create
-                Customer</a></p>
+            <p>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/customers/form}" class="btn btn-success btn-xs">Create
+                    Customer</a>
+                <a class="btn btn-success btn-xs float-right"
+                   th:href="@{'/customers/find-all'(format=csv)}">CSV</a>
+            </p>
             <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
